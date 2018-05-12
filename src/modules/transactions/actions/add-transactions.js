@@ -87,8 +87,8 @@ function buildTradeTransaction(trade, marketsData) {
   if (transaction.market) {
     header.description = transaction.market.description
   }
-  const formattedShares = formatShares(transaction.amount)
-  transaction.message = `${transaction.type} ${formattedShares.formatted} Shares @ ${transaction.price} ETH`
+  const formattedShares = formatShares(transaction.numFillerTokens || transaction.amount)
+  transaction.message = `${transaction.type || transaction.orderType} ${formattedShares.formatted} Shares @ ${transaction.price} ETH`
   header.transactions = [transaction]
   return header
 }
