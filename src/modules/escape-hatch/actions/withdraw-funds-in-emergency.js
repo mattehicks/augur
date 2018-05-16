@@ -11,7 +11,7 @@ export default function (ownedMarkets, marketsWithShares, callback = logError) {
   return (dispatch, getState) => {
 
     const {
-      partcipationTokens, initialReporters, disputeCrowdsourcers = {}, loginAccount,
+      participationTokens, initialReporters, disputeCrowdsourcers = {}, loginAccount,
     } = getState()
 
     each(ownedMarkets, (market) => {
@@ -70,8 +70,8 @@ export default function (ownedMarkets, marketsWithShares, callback = logError) {
       }
     })
 
-    Object.keys(partcipationTokens).forEach((participationTokenID) => {
-      const partcipationToken = partcipationTokens[participationTokenID]
+    Object.keys(participationTokens).forEach((participationTokenID) => {
+      const partcipationToken = participationTokens[participationTokenID]
       if (partcipationToken.balance > 0) {
         augur.api.FeeWindow.withdrawInEmergency({
           tx: { to: participationTokenID },
